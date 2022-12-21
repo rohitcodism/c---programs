@@ -1,4 +1,5 @@
 //In call by address if the parameter  in the function is modified then the function which is in the main function (actual function) is also gets modified
+//In call by address if the structers contains an array then the array gets copied in the formal function 
 #include<iostream>
 using namespace std;
 struct Rectangle{
