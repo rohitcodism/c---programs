@@ -18,5 +18,9 @@ class Rectangle {
     }
 };
 int main(){
-    
+    Rectangle r(10,5);
+ int y = r.area();
+ int x = r.changelength(20);
+    cout<< y << endl;
+    cout<< x << endl;
 }
