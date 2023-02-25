@@ -360,8 +360,11 @@ struct Array* Intersection(struct Array* arr, struct Array* Arr) {
 }
 int main(){
     struct Array arr = {{2,3,4,5,6},10,5};
-    Append(&arr,10);
-    Insert(&arr,0,10);
-    Delete(&arr,4);
-    Display(arr);
+    struct Array Arr = {{3,4,5,6,7},10,5} ;
+    struct Array *arr3;  
+     // Append(&arr,10);
+    // Insert(&arr,0,10);
+    // Delete(&arr,4);
+    arr3 = Intersection(&arr,&Arr);
+    Display(*arr3);
 }

@@ -255,9 +255,11 @@ struct Array* Intersection(struct Array *arr,struct Array *Arr){
     while(i < arr->length && j < Arr->length){
         if(arr->A[i] < Arr->A[j]){
             i++;
-        }else if(arr->A[i] > Arr->A[j]){
+        }
+        else if(arr->A[i] > Arr->A[j]){
             j++;
-        }else if(arr->A[i] == arr->A[j]){
+        }
+        else if(arr->A[i] == arr->A[j]){
             arr2->A[k++] = arr->A[i++];
             j++;
         }
