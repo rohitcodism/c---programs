@@ -2,6 +2,7 @@
 using namespace std;
 struct Array{
     int A[10];
+    int B[10];
     int length;
     int size;
 };
@@ -149,9 +150,127 @@ void reverse2(struct Array *arr){
     for(i = 0,j = arr->length-1;i<j;i++,j--){
         swap(&arr->A[i],&arr->A[j]);
     }
+}void shift(struct Array *arr){
+    char s,l,r;
+    cout<<"Enter the way you want to shift : "<<endl;
+    cin>>s;
+    if(s == 'l'){
+    for(int i = 0;i<arr->length;i++){
+        arr->A[i-1] = arr->A[i];
+    }
+    arr->A[arr->length-1] = 0;
+  }else if(s == 'r'){
+    for(int i = arr->length-1;i>=0;i--){
+        arr->A[i+1] = arr->A[i];
+    }
+    arr->A[0] = 0;
+  }
+}
+// void Rotate(struct Array *arr){
+//     for(int i = 0;i<arr->length;i++){
+//         arr->A[i-1] = arr
+//     }
+// }
+void sort(struct Array *arr){
+    int j = 0;
+    for(int i = 1;i<arr->length;i++){
+        if(arr->A[i-1]<arr->A[i]){
+            j++;
+        }else{
+            break;
+        }
+    }
+    if(j == arr->length-1){
+        cout<<"Sorted"<<endl;
+    }else{
+        cout<<"unsorted"<<endl;
+    }
+}
+// struct Array* Merge(struct Array *arr,struct Array *Arr){
+//     int i = 0,j = 0,k = 0;
+//   int *C = new int[arr->size+Arr->size];
+//   while(i<arr->length && j<Arr->length){
+//     if(arr->A[i]<Arr->B[j]){
+//         C[k++] = arr->A[i++];
+//     }else{
+//         C[k++] = Arr->B[j++];
+//     }
+//     for( ;i<arr->length;i++){
+//         C[k++] = arr->A[i];
+//     }
+//     for( ;j<Arr->length;i++){
+//         C[k++] = Arr->B[j];
+//     }
+//   }
+  
+// }
+struct Array* Merge(struct Array *arr1,struct Array *arr2){
+    int i = 0 , j = 0 , k = 0;
+    struct Array *arr3 =(struct Array *)malloc(sizeof(struct Array));
+    while(i<arr1->length && j<arr2->length){
+        if(arr1->A[i]<arr2->A[j]){
+            arr3->A[k++] = arr1->A[i++];
+        }else{
+            arr3->A[k++] = arr2->A[j++];
+        }
+    }
+    for( ;i<arr1->length;i++){
+        arr3->A[k++] = arr1->A[i];
+    }
+    for( ;j<arr2->length;j++){
+        arr3->A[k++] = arr2->A[j];
+    }
+    arr3->length = arr1->length + arr2->length;
+    arr3->size = 10;
+    return arr3;
+}
+struct Array* Union(struct Array *arr1,struct Array *arr2){
+    int i,j,k;
+    i = j = k = 0;
+    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    while(arr1->length && arr2->length){
+        if(arr1->A[i]<arr2->B[j]){
+            arr3->A[k++] = arr1->A[i++];
+        }else if(arr1->A[i]>arr2->B[j]){
+            arr3->A[k++] = arr2->B[j++];
+        }else{
+            arr3->A[k++] = arr1->A[i++];
+            j++;
+        }
+    }
+    for( ;i<arr1->length;i++){
+        arr3->A[k++] = arr1->A[i];
+    }
+    for( ;j<arr2->length;j++){
+        arr3->A[k++] = arr2->B[j++];
+    }
+    arr3->length = k;
+    arr3->size = 10;
+    return arr3;
+}
+struct Array* Intersection(struct Array *arr,struct Array *Arr){
+    int i,j,k;
+    i = j = k = 0;
+    struct Array *arr2 = (struct Array *)malloc(sizeof(struct Array));
+    while(i < arr->length && j < Arr->length){
+        if(arr->A[i] < Arr->A[j]){
+            i++;
+        }else if(arr->A[i] > Arr->A[j]){
+            j++;
+        }else if(arr->A[i] == arr->A[j]){
+            arr2->A[k++] = arr->A[i++];
+            j++;
+        }
+    }
+    arr2->length = k;
+    arr2->size = 10;
+    return arr2;
+
 }
 int main(){
-    struct Array arr = {{2,3,4,1,9},5,10};
+    struct Array arr1 = {{2,6,10,15,25},5,10};
+    struct Array arr2 = {{3,6,7,15,20},5,10};
+    struct Array *arr3;
     // cout<<"The searched element is in : "<<linearsearch(&arr,6)<<endl;
     // cout<<"The searched element is in : "<<binarysearch(arr,6)<<endl;
     // cout<<"The searched element is in : "<<Rbinsearch(arr.A,0,arr.length,5)<<endl;
@@ -161,10 +280,16 @@ int main(){
     // cout<<"sum of all the elements in this array : "<<sum(&arr)<<endl;
     // cout<<"Avarage of all the elements in this Array : "<<avg(arr)<<endl;
     //    Reverse(&arr);
-       reverse2(&arr);
+    //    reverse2(&arr);
     //  Append(&arr,10);
     //  Insert(&arr,12,11);
     // cout<<Delete(&arr,0);
-    Display(arr);
+    // shift(&arr);
+    // sort(&arr);
+    //cout<<Merge(&arr1,&arr2)<<endl;
+    // arr3 = Union(&arr1,&arr2);
+    // arr3 = Merge(&arr1,&arr2);
+    arr3 = Intersection(&arr1,&arr2);
+    Display(*arr3);
     return 0;
 }

@@ -338,6 +338,26 @@ int Delete(struct Array *arr,int index){
     }
     return 0;
 }
+struct Array* Intersection(struct Array* arr, struct Array* Arr) {
+    int i, j, k;
+    i = j = k = 0;
+    struct Array *arr2 = (struct Array*)malloc(sizeof(struct Array));
+    while (i < arr->length && j < Arr->length) {
+        if (arr->A[i] < Arr->A[j]) {
+            i++;
+        }
+        else if (arr->A[i] > Arr->A[j]) {
+            j++;
+        }else if (arr->A[i] == Arr->A[j]) {
+            arr2->A[k++] = arr->A[i++];
+            j++;
+        }
+    }
+    arr2->length = k;
+    arr2->size = 10;
+    return arr2;
+
+}
 int main(){
     struct Array arr = {{2,3,4,5,6},10,5};
     Append(&arr,10);

@@ -1,1 +1,1 @@
- reverse2(&arr);
+Display(arr);
