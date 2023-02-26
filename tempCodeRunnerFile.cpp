@@ -1,1 +1,1 @@
-Display(arr);
+struct Array* Merge(struct Array *arr1,struct Array *arr2){
