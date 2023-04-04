@@ -298,73 +298,79 @@
 //     Display(arr);
 //     return 0;
 // }
-#include<iostream>
-using namespace std;
-struct Array{
-    int A[10];
-    int size;
-    int length;
-};
-void Display(struct Array arr){
-    int i;
-    cout<<"Elements are : "<<endl;
-    for(int i = 0;i<arr.length;i++){
-        cout<<arr.A[i]<<endl;
-    }
-}
-void Append(struct Array *arr,int x){
-    if(arr->length<arr->size){
-        arr->A[arr->length++] = x;
-    }
-}
-void Insert(struct Array *arr,int index,int x){
-    if(index>=0 && index<=arr->length){
-        for(int i = arr->length;i>index;i--){
-            arr->A[i] = arr->A[i-1];
-            arr->A[index] = x;
-            arr->length++;
-        }
-    }
-}
-int Delete(struct Array *arr,int index){
-    int x = 0;
-    if(index >= 0 && index < arr->length ){
-        x = arr->A[index];
-        for(int i = index;i<arr->length;i++){
-            arr->A[i] = arr->A[i+1];
-            arr->length--;
-            return x;
-        }
-    }
-    return 0;
-}
-struct Array* Intersection(struct Array* arr, struct Array* Arr) {
-    int i, j, k;
-    i = j = k = 0;
-    struct Array *arr2 = (struct Array*)malloc(sizeof(struct Array));
-    while (i < arr->length && j < Arr->length) {
-        if (arr->A[i] < Arr->A[j]) {
-            i++;
-        }
-        else if (arr->A[i] > Arr->A[j]) {
-            j++;
-        }else if (arr->A[i] == Arr->A[j]) {
-            arr2->A[k++] = arr->A[i++];
-            j++;
-        }
-    }
-    arr2->length = k;
-    arr2->size = 10;
-    return arr2;
+// #include<iostream>
+// using namespace std;
+// struct Array{
+//     int A[10];
+//     int size;
+//     int length;
+// };
+// void Display(struct Array arr){
+//     int i;
+//     cout<<"Elements are : "<<endl;
+//     for(int i = 0;i<arr.length;i++){
+//         cout<<arr.A[i]<<endl;
+//     }
+// }
+// void Append(struct Array *arr,int x){
+//     if(arr->length<arr->size){
+//         arr->A[arr->length++] = x;
+//     }
+// }
+// void Insert(struct Array *arr,int index,int x){
+//     if(index>=0 && index<=arr->length){
+//         for(int i = arr->length;i>index;i--){
+//             arr->A[i] = arr->A[i-1];
+//             arr->A[index] = x;
+//             arr->length++;
+//         }
+//     }
+// }
+// int Delete(struct Array *arr,int index){
+//     int x = 0;
+//     if(index >= 0 && index < arr->length ){
+//         x = arr->A[index];
+//         for(int i = index;i<arr->length;i++){
+//             arr->A[i] = arr->A[i+1];
+//             arr->length--;
+//             return x;
+//         }
+//     }
+//     return 0;
+// }
+// struct Array* Intersection(struct Array* arr, struct Array* Arr) {
+//     int i, j, k;
+//     i = j = k = 0;
+//     struct Array *arr2 = (struct Array*)malloc(sizeof(struct Array));
+//     while (i < arr->length && j < Arr->length) {
+//         if (arr->A[i] < Arr->A[j]) {
+//             i++;
+//         }
+//         else if (arr->A[i] > Arr->A[j]) {
+//             j++;
+//         }else if (arr->A[i] == Arr->A[j]) {
+//             arr2->A[k++] = arr->A[i++];
+//             j++;
+//         }
+//     }
+//     arr2->length = k;
+//     arr2->size = 10;
+//     return arr2;
 
-}
+// }
+// int main(){
+//     struct Array arr = {{2,3,4,5,6},10,5};
+//     struct Array Arr = {{3,4,5,6,7},10,5} ;
+//     struct Array *arr3;  
+//      // Append(&arr,10);
+//     // Insert(&arr,0,10);
+//     // Delete(&arr,4);
+//     arr3 = Intersection(&arr,&Arr);
+//     Display(*arr3);
+// }
+#include<iostream>
+#include"oops1.cpp"
+using namespace std;
 int main(){
-    struct Array arr = {{2,3,4,5,6},10,5};
-    struct Array Arr = {{3,4,5,6,7},10,5} ;
-    struct Array *arr3;  
-     // Append(&arr,10);
-    // Insert(&arr,0,10);
-    // Delete(&arr,4);
-    arr3 = Intersection(&arr,&Arr);
-    Display(*arr3);
+    hero h1;
 }
