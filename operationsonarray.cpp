@@ -1,11 +1,12 @@
 #include<iostream>
 using namespace std;
 class Array{
-    private :
-    int *A;
-    int length;
-    int size;
+private :
+    void Swap(int *x,int *y);
 public :
+    int *A;
+    int size;
+    int length;
     Array(){
         size = 10;
         length = 0;
@@ -19,7 +20,6 @@ public :
     ~Array(){
         delete []A;
     }
-    void Swap(int x,int y);
     void Display();
     void Append(int x);
     void Insert(int index,int x);
@@ -43,12 +43,6 @@ public :
     Array* Intersection(Array *arr2);
     Array* Difference(Array *arr2);
 };
- void Array :: Swap(int x,int y){
-    int temp;
-    x = temp;
-    x = y;
-    y = temp;
-}
 void Array :: Display(){
     int i;
     cout<<"Elements are : "<<endl;
@@ -108,19 +102,6 @@ int Array :: Binarysearch(int key){
     }
     return -1;
 }
-// int Array :: Rbinsearch(int a[],int l,int h,int key){
-//     int mid;
-//     if(l<=h){
-//         mid = (l+h)/2;
-//         if(key == a[mid]){
-//             return mid;
-//         }else if(key < a[mid]){
-//             return(a,l,mid-1,key);
-//         }else{
-//             return(a,mid+1,h,key);
-//         }
-//     }
-// }
 int Array :: get(int index){
     int i;
     for(i = 0;i<length;i++){
@@ -203,11 +184,6 @@ void Array :: reverse2(){
     A[0] = 0;
   }
 }
-// void Rotate(struct Array *arr){
-//     for(int i = 0;i<arr->length;i++){
-//         arr->A[i-1] = arr
-//     }
-// }
 int Array :: issorted(){
     int j = 0;
     for(int i = 1;i<length;i++){
@@ -223,44 +199,6 @@ int Array :: issorted(){
         cout<<"unsorted"<<endl;
     }
 }
-// struct Array* Merge(struct Array *arr,struct Array *Arr){
-//     int i = 0,j = 0,k = 0;
-//   int *C = new int[arr->size+Arr->size];
-//   while(i<arr->length && j<Arr->length){
-//     if(arr->A[i]<Arr->B[j]){
-//         C[k++] = arr->A[i++];
-//     }else{
-//         C[k++] = Arr->B[j++];
-//     }
-//     for( ;i<arr->length;i++){
-//         C[k++] = arr->A[i];
-//     }
-//     for( ;j<Arr->length;i++){
-//         C[k++] = Arr->B[j];
-//     }
-//   }
-  
-// }
-// struct Array* Merge(struct Array *arr1,struct Array *arr2){
-//     int i = 0 , j = 0 , k = 0;
-//     struct Array *arr3 =(struct Array *)malloc(sizeof(struct Array));
-//     while(i<arr1->length && j<arr2->length){
-//         if(arr1->A[i]<arr2->A[j]){
-//             arr3->A[k++] = arr1->A[i++];
-//         }else{
-//             arr3->A[k++] = arr2->A[j++];
-//         }
-//     }
-//     for( ;i<arr1->length;i++){
-//         arr3->A[k++] = arr1->A[i];
-//     }
-//     for( ;j<arr2->length;j++){
-//         arr3->A[k++] = arr2->A[j];
-//     }
-//     arr3->length = arr1->length + arr2->length;
-//     arr3->size = 10;
-//     return arr3;
-// }
 Array* Union(Array arr2){
     int i,j,k;
     i = j = k = 0;
@@ -285,74 +223,75 @@ Array* Union(Array arr2){
     arr3->size = 10;
     return arr3;
 }
-Array* Intersection(struct Array Arr){
+Array* Intersection(Array *arr2){
     int i,j,k;
     i = j = k = 0;
-    struct Array *arr2 = (struct Array*)malloc(sizeof(struct Array));
-    while(i<length && j <Arr.length){
-        if(arr->A[i] < Arr->A[j]){
+    Array *arr3 = new int[length + arr2.length];
+    while(i<length && j <arr2.length){
+        if(A[i] < arr2.A[j]){
             i++;
         }
-        else if(arr->A[i] > Arr->A[j]){
+        else if(A[i] > arr2.A[j]){
             j++;
         }
-        else if(arr->A[i] == Arr->A[j]){
-            arr2->A[k++] = arr->A[i++];
+        else if(A[i] == arr2.A[j]){
+            arr3->A[k++] = A[i++];
             j++;
         }
     }
-    arr2->length = k;
-    arr2->size = 10;
-    return arr2;
+    arr3->length = k;
+    arr3->size = 10;
+    return arr3;
 
 }
 Array* Merge(Array arr2){
-    int i = 0 , j = 0 , k = 0;
-    Array *arr3 = new Array(length + arr2.length); 
-    while(i<arr1->length && j<arr2->length){
-        if(arr1->A[i]<arr2->A[j]){
-            arr3->A[k++] = arr1->A[i++];
+    int i,j,k;
+    i=j=k=0;
+    Array *arr3 = new Array(length+arr2.length); 
+    while(i<length && j<arr2.length){
+        if(A[i]<arr2.A[j]){
+            arr3->A[k++] = A[i++];
         }else{
-            arr3->A[k++] = arr2->A[j++];
+            arr3->A[k++] = arr2.A[j++];
         }
     }
-    for( ;i<arr1->length;i++){
-        arr3->A[k++] = arr1->A[i];
+    for( ;i<length;i++){
+        arr3->A[k++] = A[i];
     }
-    for( ;j<arr2->length;j++){
-        arr3->A[k++] = arr2->A[j];
+    for( ;j<arr2.length;j++){
+        arr3->A[k++] = arr2.A[j];
     }
-    arr3->length = arr1->length + arr2->length;
+    arr3->length = length + arr2.length;
     arr3->size = 10;
     return arr3;
 }
-struct Array* Difference(struct Array *arr1,struct Array *arr2){
+struct Array* Difference(Array *arr2){
     int i,j,k;
     i = j = k = 0;
-    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
-    while(i<arr1->length && j<arr2->length){
-        if(arr1->A[i]<arr2->A[j]){
-            arr3->A[k++] = arr1->A[i++];
-        }else if(arr1->A[i]>arr2->A[j]){
+    Array *arr3 = new int[length + arr2.length]
+    while(i<length && j<arr2.length){
+        if(A[i]<arr2.A[j]){
+            arr3->A[k++] = A[i++];
+        }else if(A[i]>arr2.A[j]){
             j++;
         }else{
             i++,j++;
         }
     }
-    for( ;i<arr1->length;i++){
-        arr3->A[k++] = arr1->A[i];
+    for( ;i<length;i++){
+        arr3->A[k++] = A[i];
     }
     arr3->length = k;
     arr3->size = 10;
     return arr3;
 }
 int main(){
+    Array *arr1;
     int ch;
     int x,index,size;
-    struct Array arr1;
     cout<<"Enter the size : "<<endl;
     cin>>size;
-    arr1.A = (int *)malloc(arr1.size*sizeof(int));
+    arr1 = new Array[size];
     do
     {
     cout<<"Menu : "<<endl<<"1. Insert\n"<<"2. Delete\n"<<"3. Search\n"<<"4. Sum\n"<<"5. Display\n"<<"6. Exit\n"<<endl;
@@ -362,47 +301,28 @@ int main(){
         case 1 :
         cout<<"Enter an element and index : "<<endl;
         cin>>x>>index;
-        Insert(&arr1,index,x);
+        Insert(index,x);
         break;
         case 2 :
         cout<<"Enter the index : "<<endl;
         cin>>index;
-        x = Delete(&arr1,index);
+        int x = Delete(index);
         cout<<"The deleted element is : "<<x<<endl;
         break;
         case 3 : 
         cout<<"Enter the key you want to found : "<<endl;
         cin>>x;
-        cout<<"The searched element is in : "<<binarysearch(arr1,6)<<endl;
+        cout<<"The searched element is in : "<<binarysearch(6)<<endl;
         break;
         case 4 :
-        cout<<"sum of all the elements  in this array : "<<sum(&arr1)<<endl;
+        cout<<"sum of all the elements  in this array : "<<sum()<<endl;
         break;
         case 5 :
-        Display(arr1);
+        Display();
         break;
         case 6 :
         break;
     }
   }while (ch<6);
-    // cout<<"The searched element is in : "<<linearsearch(&arr,6)<<endl;
-    // cout<<"The searched element is in : "<<binarysearch(arr,6)<<endl;
-    // cout<<"The searched element is in : "<<Rbinsearch(arr.A,0,arr.length,5)<<endl;
-    // cout<<"The element in the searched index and the index is respectively : "<<get(arr,2)<<endl;
-    // cout<<"max value in this Array : "<<max(arr)<<endl;
-    // cout<<"min value in this array : "<<min(arr)<<endl;
-    // cout<<"sum of all the elements in this array : "<<sum(&arr)<<endl;
-    // cout<<"Avarage of all the elements in this Array : "<<avg(arr)<<endl;
-    //    Reverse(&arr);
-    //    reverse2(&arr);
-    //  Append(&arr,10);
-    //  Insert(&arr,12,11);
-    // cout<<Delete(&arr,0);
-    // shift(&arr);
-    // sort(&arr);
-    //cout<<Merge(&arr1,&arr2)<<endl;
-    // arr3 = Union(&arr1,&arr2);
-    // arr3 = Merge(&arr1,&arr2);
-    // arr3 = Intersection(&arr1,&arr2);
     return 0;
 }
