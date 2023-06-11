@@ -368,9 +368,10 @@
 //     arr3 = Intersection(&arr,&Arr);
 //     Display(*arr3);
 // }
-#include<iostream>
-#include"oops1.cpp"
-using namespace std;
-int main(){
-    hero h1;
-}
+// #include<iostream>
+// #include"oops1.cpp"
+// using namespace std;
+// int main(){
+//     hero h1;
+// }
+include<stdio.h>
