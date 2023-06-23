@@ -23,6 +23,45 @@ int del(int a[], int x, int n){
     n--;
     return z;
 }
+int linearSearch(int a[], int length, int key){
+    int i;
+    for(i = 0;i<length;i++){
+        if(key == a[i])
+            return i;
+    }
+}
+int rBinSearch(int a[],int length, int key,int l,int h){
+    if(l<h){
+        int mid = (l+h)/2;
+        if(key == a[mid])
+            return mid;
+        else if(key < mid)
+            return rBinSearch(a,length,key,l,mid-1);
+        else
+            return rBinSearch(a,length,key,mid+1,h);
+    }
+}
+int getIndex(int a[],int length,int index){
+    if(index>=0 && index<length)
+        return a[index];
+    else
+        return -1;
+}
+void setIndex(int a[], int length, int index, int key){
+    if(index>=0 && index<length){
+        a[index] = key;
+        cout<<"Value Setted Successfully."<<endl;
+    }else
+        cout<<"Error"<<endl;
+}
+int max(int a[], int length){
+    int max = a[0];
+    for(int i = 1;i<length;i++){
+        if(a[i]> max)
+            max = a[i];
+    }
+    return max;
+}
 int main(){
     int a[100];
     int n;
@@ -39,11 +78,28 @@ int main(){
     //     cout<<a[i]<<endl;
     // }
     // insert(a,5,3,11);
-    int x = del(a,3,n);
-    cout<<"The Deleted element is : "<<x<<endl<<"The Array Is : "<<endl;
-    for(int i = 0;i<n-1;i++)
-        cout<<a[i]<<endl;
-    
-    
-    return 0;
+    // int x = del(a,3,n);
+    // cout<<"The Deleted element is : "<<x<<endl<<"The Array Is : "<<endl;
+    // for(int i = 0;i<n-1;i++)
+    //     cout<<a[i]<<endl;
+    // int k;
+    // cout<<"Enter an element to search in the array : ";
+    // cin>>k;
+    // int l = 0;
+    // int h = n-1;
+    // cout<<"The searched element is in the "<<rBinSearch(a,n,k,l,h)<<"th index of the array."<<endl;
+    // int f;
+    // cout<<"Enter the index no. to find the element : ";
+    // cin>>f;
+    // cout<<"The element in "<<f<<"th index is : ";
+    // if(getIndex(a,n,f) != -1)
+    //     cout<<getIndex(a, n, f)<<endl;
+    // else
+    //     cout<<"Invalid"<<endl;
+    // int b;
+    // cout<<"Enter an index to set the value : ";
+    // cin>>b;
+    // setIndex(a,n,b,7);
+    // return 0;
+    cout<<"The max element is : "<<max(a,n)<<endl;
 }

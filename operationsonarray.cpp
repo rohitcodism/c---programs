@@ -24,7 +24,7 @@ public :
     void Append(int x);
     void Insert(int index,int x);
     int Delete(int index);
-    int Linearsearch(int key);
+    int LinearSearch(int key);
     int Binarysearch(int key);
     int get(int index);
     void Set(int index,int x);
@@ -35,9 +35,9 @@ public :
     void Reverse();
     void reverse2();
     void shift();
-    void Insertsort();
-    int issorted();
-    void rearrenge();
+    void InsertSort();
+    int isSorted();
+    void reArrange();
     Array* Merge(Array *arr2);
     Array* Union(Array *arr2);
     Array* Intersection(Array *arr2);
@@ -177,12 +177,12 @@ void Array :: reverse2(){
         A[i-1] = A[i];
     }
     A[length-1] = 0;
-  }else if(s == 'r'){
+}else if(s == 'r'){
     for(int i = length-1;i>=0;i--){
         A[i+1] = A[i];
     }
     A[0] = 0;
-  }
+}
 }
 int Array :: issorted(){
     int j = 0;
