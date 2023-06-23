@@ -1,1 +1,6 @@
-struct Array* Merge(struct Array *arr1,struct Array *arr2){
+append(a,5,4);
+    // cout<<"The Array after appending : "<<endl;
+    // for(int i =0;i<=n;i++){
+    //     cout<<a[i]<<endl;
+    // }
+    // ins
