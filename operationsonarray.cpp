@@ -57,7 +57,7 @@ void Array :: Insert(int index,int x){
     if(index>=0&&index<=length){
         for(int i = length;i>index;i--){
             A[i] = A[i-1];
-           A[index] = x;
+        A[index] = x;
             length++;
         }
     }
