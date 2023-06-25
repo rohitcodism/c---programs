@@ -144,6 +144,17 @@ void rotate2(int a[], int n, int x){
         cout<<a[i]<<"\t"<<endl;
     }
 }
+int isSorted(int a[], int n){
+    int buzz = 0;
+    for(int i = 0;i<n;i++){
+        if(a[i]>a[i+1])
+            buzz++;
+    }
+    if(buzz)
+        return 0;
+    else
+        return 1;
+}
 int main(){
     int a[100];
     int n;
@@ -185,8 +196,9 @@ int main(){
     // return 0;
     // cout<<"The max element is : "<<max(a,n)<<endl;
     // rev(a,n);
-    int x;
-    cout<<"How many times you want to rotate the array : ";
-    cin>>x;
-    rotate2(a,n,x);
+    // int x;
+    // cout<<"How many times you want to rotate the array : ";
+    // cin>>x;
+    // rotate2(a,n,x);
+    isSorted(a,n);
 }
