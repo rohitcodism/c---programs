@@ -62,6 +62,88 @@ int max(int a[], int length){
     }
     return max;
 }
+void rev(int a[],int n){
+    int i,j,temp;
+    for(i = 0,j = n-1;i<j;i++,j--){
+        temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+    cout<<"After reversing the array is : "<<endl;
+    for(i = 0;i<n;i++){
+        cout<<a[i]<<" "<<endl;
+    }
+}
+void leftShift(int a[], int n,int x){
+    int i,j;
+    for(int j =0;j<x;j++){
+        for(i = 0;i<n;i++)
+            a[i] = a[i+1];
+    }
+    for(i = 1;i<=x;i++){
+        a[n-i] = 0;
+    }
+    cout<<"After shifting the array is : "<<endl;
+    for ( i = 0; i < n; i++)
+    {
+        /* code */
+        cout<<a[i]<<" ";
+    }
+}
+void rightShift(int a[], int n,int x){
+    int i,j;
+    for(int j =0;j<x;j++){
+        for(i = n-1;i>0;i--)
+            a[i] = a[i-1];
+    }
+    for(i = 0;i<x;i++){
+        a[i] = 0;
+    }
+    cout<<"After shifting the array is : "<<endl;
+    for ( i = 0; i < n; i++)
+    {
+        /* code */
+        cout<<a[i]<<" ";
+    }
+}
+void rotate(int a[], int n, int x){
+    int i,t = 0;
+    int temp[n];
+    for(i = x;i<n;i++){
+        temp[t] = a[i];
+        t++;
+    }
+    for(i = 0;i<x;i++){
+        temp[t] = a[i];
+        t++;
+    }
+    for(i = 0;i<n;i++){
+        a[i] = temp[i];
+    }
+    cout<<"After rotating the array is : "<<endl;
+    for(i = 0;i<n;i++){
+        cout<<a[i]<<"\t"<<endl;
+    }
+}
+void rotate2(int a[], int n, int x){
+    int i,t = 0;
+    int temp[n];
+    for(i = n-1;i>=n-x;i--){
+        temp[t] = a[i];
+        t++;
+    }
+    for(i = 0;i<n-x;i++){
+        temp[t] = a[i];
+        t++;
+    }
+    for(i = 0;i<n;i++){
+        a[i] = temp[i];
+    }
+    cout<<"After rotating the array is : "<<endl;
+    for(i = 0;i<n;i++){
+        cout<<a[i]<<"\t"<<endl;
+    }
+}
 int main(){
     int a[100];
     int n;
@@ -101,5 +183,10 @@ int main(){
     // cin>>b;
     // setIndex(a,n,b,7);
     // return 0;
-    cout<<"The max element is : "<<max(a,n)<<endl;
+    // cout<<"The max element is : "<<max(a,n)<<endl;
+    // rev(a,n);
+    int x;
+    cout<<"How many times you want to rotate the array : ";
+    cin>>x;
+    rotate2(a,n,x);
 }
