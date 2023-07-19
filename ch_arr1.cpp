@@ -21,6 +21,6 @@ int main(){
         }
     }
     // isMissing(a, a[i-1]);
-    cout<<a[i-1]<<endl;
+    cout<<a[n-1]<<endl;
     return 0;
 }
